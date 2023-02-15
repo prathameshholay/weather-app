@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hawaman Rapid Forecast</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+
+</head>
+
+
+<body>
+  <!-- for disabling the right click  oncontextmenu="alert('developers option is disabled : due to code copying reasons'); return false;" -->
+  <h1>Hawaman</h1>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class=" container-fluid">
+      <a class="navbar-brand" href="#">Rapid forecasting</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About this app</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Cities
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Delhi</a></li>
+              <li><a class="dropdown-item" href="#">Berlin</a></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Bangalore</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Usage guide</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search" name="f1" id="f1">
+          <input id="city" class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+            name="city" />
+          <button class="btn btn-outline-success" type="submit" id="submit">
+            Search
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <div class="container">
+    <h1 class="display-4 text-center">
+      Weather of <span id="cityName"></span>
+    </h1>
+    <main>
+      <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-info">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">Temperatures Info</h4>
+              <br />
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                class="bi bi-thermometer-half" viewBox="0 0 16 16">
+                <path d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V6.5a.5.5 0 0 1 1 0v4.585a1.5 1.5 0 0 1 1 1.415z" />
+                <path
+                  d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1z" />
+              </svg>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">
+                <span id="temp2"></span><small class="text-muted fw-light"> °C</small>
+              </h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>temperatures :<span id="temp"></span></li>
+                <li>max temperatures : <span id="max_temp"></span></li>
+                <li>min temperatures : <span id="min_temp"></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">Wind Info</h4>
+              <br />
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-wind"
+                viewBox="0 0 16 16">
+                <path
+                  d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z" />
+              </svg>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">
+                <span id="wind_speed2"></span><small class="text-muted fw-light">km/s</small>
+              </h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>Feels like : <span id="feels_like"></span></li>
+
+                <li>Wind_Speed : <span id="wind_speed"></span></li>
+                <li>Wind_Degree : <span id="wind_degrees"></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-warning">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">Humidity Info</h4>
+              <br />
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-moisture"
+                viewBox="0 0 16 16">
+                <path
+                  d="M13.5 0a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V7.5h-1.5a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V15h-1.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V.5a.5.5 0 0 0-.5-.5h-2zM7 1.5l.364-.343a.5.5 0 0 0-.728 0l-.002.002-.006.007-.022.023-.08.088a28.458 28.458 0 0 0-1.274 1.517c-.769.983-1.714 2.325-2.385 3.727C2.368 7.564 2 8.682 2 9.733 2 12.614 4.212 15 7 15s5-2.386 5-5.267c0-1.05-.368-2.169-.867-3.212-.671-1.402-1.616-2.744-2.385-3.727a28.458 28.458 0 0 0-1.354-1.605l-.022-.023-.006-.007-.002-.001L7 1.5zm0 0-.364-.343L7 1.5zm-.016.766L7 2.247l.016.019c.24.274.572.667.944 1.144.611.781 1.32 1.776 1.901 2.827H4.14c.58-1.051 1.29-2.046 1.9-2.827.373-.477.706-.87.945-1.144zM3 9.733c0-.755.244-1.612.638-2.496h6.724c.395.884.638 1.741.638 2.496C11 12.117 9.182 14 7 14s-4-1.883-4-4.267z" />
+              </svg>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">
+                <span id="humidity2"></span><small class="text-muted fw-light">%</small>
+              </h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>Humidity : <span id="humidity"></span>%</li>
+                <li>Sunrise : <span id="sunrise"></span></li>
+                <li>Sunset : <span id="sunset"></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="display-6 text-center mb-4">Other cities weather</h2>
+
+      <div class="table-responsive">
+        <table class="table text-center">
+          <thead>
+            <tr>
+              <th style="width: 32%"></th>
+              <th style="width: 22%">feels_like</th>
+              <th style="width: 22%">humidity</th>
+              <th style="width: 22%">max_temp</th>
+              <th style="width: 22%">min_temp</th>
+              <th style="width: 22%">sunrise</th>
+              <th style="width: 22%">sunset</th>
+              <th style="width: 22%">temp</th>
+              <th style="width: 22%">wind_degrees</th>
+              <th style="width: 22%">wind_speed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" class="text-start">Delhi</th>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+              <td>6</td>
+              <td>7</td>
+              <td>8</td>
+              <td>9</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-start">Pune</th>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+              <td>6</td>
+              <td>7</td>
+              <td>8</td>
+              <td>9</td>
+              <td>10</td>
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+              <th scope="row" class="text-start">Penseylvenia</th>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+              <td>6</td>
+              <td>7</td>
+              <td>8</td>
+              <td>9</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-start">Shanghai</th>
+              <td></td>
+              <td>
+                <svg class="bi" width="24" height="24">
+                  <use xlink:href="#check"></use>
+                </svg>
+              </td>
+              <td>
+                <svg class="bi" width="24" height="24">
+                  <use xlink:href="#check"></use>
+                </svg>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-start">Kolkatta</th>
+              <td></td>
+              <td>
+                <svg class="bi" width="24" height="24">
+                  <use xlink:href="#check"></use>
+                </svg>
+              </td>
+              <td>
+                <svg class="bi" width="24" height="24">
+                  <use xlink:href="#check"></use>
+                </svg>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-start">Los Angeles</th>
+              <td></td>
+              <td></td>
+              <td>
+                <svg class="bi" width="24" height="24">
+                  <use xlink:href="#check"></use>
+                </svg>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+  <script defer src="./script.js"></script>
+</body>
+
+<script>
+  /*
+  // for disabling the developer option short cuts works perfectly ...!
+  document.onkeydown = function (e) {
+    if (event.keyCode == 123) {
+      return false;
+    }
+    if (e.ctrlKey || e.shiftKey || e.keyCode == 'I'.charCodeAt(0)) {
+      return false;
+    }
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+      return false;
+    }
+    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+      return false;
+    }
+  }
+  */
+</script>
+
+</html>
